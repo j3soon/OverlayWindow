@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/j3soon/OverlayWindow</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>overlay monogame</tags>
+    <dependencies>
+        <dependency id="MonoGame.Framework.WindowsDX" version="3.6.0.1625" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\OverlayWindow.dll" target="lib\net45" />
+    <file src="bin\Release\OverlayWindow.pdb" target="lib\net45" />
+    <file src="readme.txt" target="" />
+  </files>
+</package>
