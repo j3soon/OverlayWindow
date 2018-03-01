@@ -59,5 +59,34 @@ namespace OverlayWindow
             if ((ret = DwmExtendFrameIntoClientArea(Window.Handle, ref margins)) != S_OK)
                 throw new Win32Exception(ret);
         }
+
+        protected int GetScreens()
+        {
+            return System.Windows.Forms.Screen.AllScreens.Length;
+        }
+
+        protected Rectangle GetScreenBounds()
+        {
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        protected Rectangle GetScreenBounds(int screenIndex)
+        {
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.AllScreens[screenIndex].Bounds;
+            return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        protected Rectangle GetScreenWorkingArea()
+        {
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+            return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        protected Rectangle GetScreenWorkingArea(int screenIndex)
+        {
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.AllScreens[screenIndex].WorkingArea;
+            return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
     }
 }

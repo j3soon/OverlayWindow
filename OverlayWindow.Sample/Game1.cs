@@ -18,16 +18,16 @@ namespace OverlayWindow.Sample
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-            graphics.PreferredBackBufferHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            graphics.PreferredBackBufferWidth = GetScreenBounds().Width;
+            graphics.PreferredBackBufferHeight = GetScreenBounds().Height;
             graphics.ApplyChanges();
             SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
         }
 
         private void SystemEvents_DisplaySettingsChanged(object sender, System.EventArgs e)
         {
-            graphics.PreferredBackBufferWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-            graphics.PreferredBackBufferHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            graphics.PreferredBackBufferWidth = GetScreenBounds().Width;
+            graphics.PreferredBackBufferHeight = GetScreenBounds().Height;
             graphics.ApplyChanges();
         }
 
