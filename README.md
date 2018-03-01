@@ -3,7 +3,7 @@ Simple topmost semi-transparent window using MonoGame
 
 ## NuGet: https://www.nuget.org/packages/OverlayWindow/
 
-[ChangeLog](docs/CHANGELOG.md)
+[ChangeLog](doc/CHANGELOG.md)
 
 ## How To Use
 Add a `MonoGame Windows Project`, and change the base class of your game from `OverlayGame`.
@@ -22,4 +22,4 @@ Drawing on the window looks like drawing directly on screen.
 
 See [OverlayWindow.Sample](OverlayWindow.Sample) for a fullscreen window that renders MonoGame's logo.
 
-![demo](docs/demo.png)
+![demo](doc/demo.png)
