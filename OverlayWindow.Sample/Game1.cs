@@ -87,13 +87,14 @@ namespace OverlayWindow.Sample
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            EnsureTopMost();
             GraphicsDevice.Clear(Color.Transparent);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             Vector2 center = new Vector2(Window.ClientBounds.Width / 2f, Window.ClientBounds.Height / 2f);
             Vector2 origin = new Vector2(icon.Width / 2f, icon.Height / 2f);
-            spriteBatch.Draw(icon, center, null, new Color(Color.White, 128), 0, origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(icon, center, null, new Color(Color.White, 128), 0, origin, 0.1f, SpriteEffects.None, 0);
             spriteBatch.End();
 
             base.Draw(gameTime);

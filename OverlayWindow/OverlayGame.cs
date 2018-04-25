@@ -14,6 +14,9 @@ namespace OverlayWindow
         [DllImport("kernel32.dll")]
         static extern void SetLastError(uint dwErrCode);
 
+        /*[DllImport("user32.dll", SetLastError = true)]
+        static extern int GetWindowLong(IntPtr hWnd, int nIndex);*/
+
         [DllImport("user32.dll", SetLastError = true)]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
@@ -29,6 +32,7 @@ namespace OverlayWindow
         const int GWL_EXSTYLE = -20;
         const int LWA_ALPHA = 0x00000002;
         const int WS_EX_LAYERED = 0x00080000;
+        //const int WS_EX_TOPMOST = 0x00000008;
         const int WS_EX_TRANSPARENT = 0x00000020;
         const int WS_EX_NOACTIVATE = 0x08000000;
         IntPtr HWND_TOPMOST = (IntPtr)(-1);
@@ -60,30 +64,47 @@ namespace OverlayWindow
                 throw new Win32Exception(ret);
         }
 
-        protected int GetScreens()
+        public void EnsureTopMost()
+        {
+            // This must be called once a while.
+            // Set to top-most window.
+            if (!SetWindowPos(Window.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE))
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            /*int ret = GetWindowLong(Window.Handle, GWL_EXSTYLE);
+            if (ret == 0)
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            if ((ret & WS_EX_TOPMOST) == 0)
+            {
+                // Set to top-most window.
+                if (!SetWindowPos(Window.Handle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE))
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+            }*/
+        }
+
+        public static int GetScreens()
         {
             return System.Windows.Forms.Screen.AllScreens.Length;
         }
 
-        protected Rectangle GetScreenBounds()
+        public static Rectangle GetScreenBounds()
         {
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        protected Rectangle GetScreenBounds(int screenIndex)
+        public static Rectangle GetScreenBounds(int screenIndex)
         {
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.AllScreens[screenIndex].Bounds;
             return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        protected Rectangle GetScreenWorkingArea()
+        public static Rectangle GetScreenWorkingArea()
         {
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
             return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
         }
 
-        protected Rectangle GetScreenWorkingArea(int screenIndex)
+        public static Rectangle GetScreenWorkingArea(int screenIndex)
         {
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.AllScreens[screenIndex].WorkingArea;
             return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
