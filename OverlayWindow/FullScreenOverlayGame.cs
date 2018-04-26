@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -23,6 +24,12 @@ namespace OverlayWindow
             graphics.PreferredBackBufferWidth = GetVirtualScreenAreaSize().Width;
             graphics.PreferredBackBufferHeight = GetVirtualScreenAreaSize().Height;
             graphics.ApplyChanges();
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+            SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
         }
 
         /// <summary>
