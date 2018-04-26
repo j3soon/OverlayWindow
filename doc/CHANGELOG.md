@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-04-26
+### Fixed
+- TopMost get behind other non-TopMost windows occasionally
+- Window size not changed when changing projection mode (Win + P)
+
 ## [1.1.0] - 2018-03-01
 ### Added
 - Screen helper functions
@@ -17,3 +22,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased]: https://github.com/j3soon/OverlayWindow/compare/v1.1.0...HEAD
 [1.1.0]: https://github.com/j3soon/OverlayWindow/compare/v1.0.0...v1.1.0
+[1.2.0]: https://github.com/j3soon/OverlayWindow/compare/v1.1.0...v1.2.0

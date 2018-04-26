@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/j3soon/OverlayWindow</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Add screen helper functions</releaseNotes>
+    <releaseNotes>Fix TopMost and Resize bug</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>overlay monogame</tags>
     <dependencies>
