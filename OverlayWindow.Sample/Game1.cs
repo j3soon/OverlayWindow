@@ -1,35 +1,25 @@
-﻿using Microsoft.Win32;
+﻿using System.Diagnostics;
+using System.Drawing;
+using System.Windows.Forms;
+using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
+using Color = Microsoft.Xna.Framework.Color;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace OverlayWindow.Sample
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : OverlayGame
+    public class Game1 : FullScreenOverlayGame
     {
-        GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D icon;
 
-        public Game1()
-        {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = GetScreenBounds().Width;
-            graphics.PreferredBackBufferHeight = GetScreenBounds().Height;
-            graphics.ApplyChanges();
-            SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
-        }
-
-        private void SystemEvents_DisplaySettingsChanged(object sender, System.EventArgs e)
-        {
-            graphics.PreferredBackBufferWidth = GetScreenBounds().Width;
-            graphics.PreferredBackBufferHeight = GetScreenBounds().Height;
-            graphics.ApplyChanges();
-        }
+        public Game1() { }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -87,12 +77,11 @@ namespace OverlayWindow.Sample
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            EnsureTopMost();
             GraphicsDevice.Clear(Color.Transparent);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            Vector2 center = new Vector2(Window.ClientBounds.Width / 2f, Window.ClientBounds.Height / 2f);
+            Vector2 center = new Vector2(GetVirtualScreenAreaSize().Width / 2f, GetVirtualScreenAreaSize().Height / 2f);
             Vector2 origin = new Vector2(icon.Width / 2f, icon.Height / 2f);
             spriteBatch.Draw(icon, center, null, new Color(Color.White, 128), 0, origin, 1, SpriteEffects.None, 0);
             spriteBatch.End();

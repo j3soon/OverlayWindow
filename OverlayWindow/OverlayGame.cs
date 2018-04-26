@@ -1,7 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace OverlayWindow
 {
@@ -64,6 +67,19 @@ namespace OverlayWindow
                 throw new Win32Exception(ret);
         }
 
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
+        {
+            // May cause impact on performance.
+            // But it can force window's TopMost attribute.
+            EnsureTopMost();
+            base.Update(gameTime);
+        }
+
         public void EnsureTopMost()
         {
             // This must be called once a while.
@@ -108,6 +124,18 @@ namespace OverlayWindow
         {
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.AllScreens[screenIndex].WorkingArea;
             return new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        public static System.Drawing.Rectangle GetVirtualScreenArea()
+        {
+            return SystemInformation.VirtualScreen;
+        }
+
+        public static System.Drawing.Size GetVirtualScreenAreaSize()
+        {
+            return new Size(
+                SystemInformation.VirtualScreen.Width - SystemInformation.VirtualScreen.Left,
+                SystemInformation.VirtualScreen.Height - SystemInformation.VirtualScreen.Top);
         }
     }
 }

@@ -61,6 +61,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FullScreenOverlayGame.cs" />
     <Compile Include="OverlayGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
